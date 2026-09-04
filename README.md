@@ -1,16 +1,49 @@
-# React + Vite
+# Ketan Damle — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A sample portfolio built during **Session 02: Portfolio Making (T8481)** as a
+reference for students. Stack matches what we teach in class:
 
-Currently, two official plugins are available:
+- **Vite** — build tool / dev server
+- **React 19** — framework
+- **Tailwind CSS v4** — styling
+- **React Router** — client-side routing
+- **three.js + @react-three/fiber + drei** — hero blob
+- **framer-motion** — reveal animations
+- **Vercel** — hosting
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Run it locally
 
-## React Compiler
+```bash
+npm install
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Open the URL printed in the terminal (usually `http://localhost:5173`).
 
-## Expanding the Oxlint configuration
+## Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```
+src/
+├── components/
+│   ├── three/HeroBlob.jsx   → three.js distorted sphere
+│   ├── Header.jsx           → pill nav + "available for work" chip
+│   ├── Hero.jsx             → landing hero with blob background
+│   ├── FeaturedWork.jsx     → 3 case-study preview cards
+│   ├── Marquee.jsx          → capability strip
+│   ├── About.jsx            → home about block
+│   └── Footer.jsx           → email CTA + social + oversized wordmark
+├── pages/
+│   ├── Home.jsx
+│   ├── Work.jsx             → /work index
+│   ├── CaseStudy.jsx        → /work/:slug detail
+│   ├── About.jsx            → /about
+│   ├── Contact.jsx          → /contact
+│   └── NotFound.jsx
+├── data/
+│   └── projects.js          → single source of truth for case studies
+└── index.css                → palette + tokens + fonts
+```
+
+## Deploy
+
+Every push to this branch auto-deploys to Vercel.
