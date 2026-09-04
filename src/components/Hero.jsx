@@ -1,54 +1,99 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, MapPin } from 'lucide-react'
-import { Button } from './ui/button'
+import { ArrowDown, ArrowRight } from 'lucide-react'
+import { motion } from 'framer-motion'
+import HeroBlob from './three/HeroBlob'
 
 export default function Hero() {
   return (
-    <section className="flex min-h-[calc(100vh-80px)] items-center px-6 pt-20 md:px-12 lg:px-20">
-      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-16">
-        <div className="flex flex-col gap-6">
-          <h1 className="text-5xl leading-[1.05] font-black tracking-tight text-foreground sm:text-6xl lg:text-7xl">
-            Good ideas are common.
+    <section className="relative flex min-h-svh items-center overflow-hidden pt-24 pb-16">
+      {/* Three.js blob, right-anchored on desktop */}
+      <div className="pointer-events-none absolute inset-0 opacity-90 md:right-[-6%] md:left-1/2">
+        <HeroBlob />
+      </div>
+
+      {/* Soft radial fade so text stays readable */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(60% 60% at 20% 40%, var(--background) 0%, transparent 70%)',
+        }}
+      />
+
+      <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 px-6 md:grid-cols-2 md:px-8">
+        <div className="relative z-10 flex flex-col gap-8">
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 font-mono text-xs text-muted-foreground backdrop-blur"
+          >
+            <span className="inline-block size-1.5 rounded-full bg-accent" />
+            Portfolio · 2026
+          </motion.p>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+            className="text-[clamp(2.75rem,7vw,5.5rem)] leading-[0.98] font-semibold tracking-[-0.035em] text-foreground"
+          >
+            Product design that
             <br />
-            Good execution isn't.
-          </h1>
-          <p className="max-w-md text-lg text-foreground">
-            I design and ship real products,{' '}
-            <span className="text-muted-foreground">not just polished mockups.</span>
-          </p>
-          <div className="flex flex-wrap items-center gap-4 pt-2">
-            <Button
-              render={<Link to="/work" />}
-              nativeButton={false}
-              className="h-11 gap-2 rounded-xl px-6 text-base"
+            reads like a{' '}
+            <em className="font-serif text-[1.08em] font-normal not-italic italic tracking-tight text-accent">
+              conversation
+            </em>
+            ,
+            <br />
+            not a specification.
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="max-w-lg text-lg leading-relaxed text-muted-foreground"
+          >
+            I'm Ketan — a product designer working at the seam of research, systems,
+            and taste. Six years shipping calm, useful software across fintech,
+            wellness, and B2B SaaS.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-wrap items-center gap-3 pt-2"
+          >
+            <Link
+              to="/work"
+              className="group inline-flex h-12 items-center gap-2 rounded-full bg-foreground px-6 text-sm font-medium text-background transition-all hover:-translate-y-0.5 hover:shadow-xl"
             >
               See selected work
-              <ArrowRight className="size-4" />
-            </Button>
-            <Button
-              variant="outline"
-              render={<a href="/resume.pdf" download />}
-              nativeButton={false}
-              className="h-11 rounded-xl px-6 text-base"
+              <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+            <Link
+              to="/about"
+              className="inline-flex h-12 items-center gap-2 rounded-full border border-border bg-card/60 px-6 text-sm font-medium text-foreground backdrop-blur transition-all hover:bg-card"
             >
-              Download Resume
-            </Button>
-          </div>
+              About me
+            </Link>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="mt-6 flex items-center gap-2 font-mono text-xs text-muted-foreground"
+          >
+            <ArrowDown className="size-3 animate-bounce" />
+            <span>scroll for selected work</span>
+          </motion.div>
         </div>
 
-        <div className="relative mx-auto w-full max-w-md">
-          <div className="aspect-[4/5] w-full overflow-hidden rounded-3xl shadow-2xl">
-            <img
-              src="/hero.jpg"
-              alt="Ketan Damle"
-              className="h-full w-full object-cover"
-            />
-          </div>
-          <div className="absolute bottom-4 left-4 flex items-center gap-1.5 rounded-full border border-border/50 bg-background/90 px-3 py-1.5 text-xs font-medium text-foreground shadow-md backdrop-blur">
-            <MapPin className="size-3.5 text-rose-500" />
-            India &middot; Remote
-          </div>
-        </div>
+        {/* Reserve right-column space so blob and copy don't collide */}
+        <div className="hidden h-[520px] md:block" aria-hidden="true" />
       </div>
     </section>
   )
