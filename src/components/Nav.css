@@ -1,0 +1,39 @@
+.nav-container {
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+  width: 100%;
+}
+
+.nav-pill {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  background-color: #09090b;
+  padding: 0.65rem 2rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.nav-link {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  text-transform: lowercase;
+  color: #71717a;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-weight: 400;
+}
+
+.nav-link:hover {
+  color: #a1a1aa;
+  text-decoration: none;
+}
+
+.nav-link.active {
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+}
