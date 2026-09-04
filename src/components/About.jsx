@@ -1,42 +1,92 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
+import { motion } from 'framer-motion'
+
+const facts = [
+  { k: 'Based in', v: 'Bengaluru, India — remote-first' },
+  { k: 'Currently', v: 'Product Designer @ Kaya Finance' },
+  { k: 'Before', v: 'Nova, Meru, Lumina, a few good agencies' },
+  { k: 'Teaches', v: 'UX & product design at MIT ID · MDes' },
+]
 
 export default function About() {
   return (
-    <section className="px-6 py-24 md:px-12 lg:px-20">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-16">
-        <div className="mx-auto w-full max-w-md">
-          <div className="aspect-[4/5] w-full overflow-hidden rounded-3xl shadow-2xl">
+    <section id="about" className="relative px-6 py-24 md:px-8 md:py-32">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-14 md:grid-cols-12 md:gap-16">
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="md:col-span-5"
+        >
+          <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-[28px] shadow-2xl">
             <img
-              src="/about.jpg"
+              src="https://images.unsplash.com/photo-1531891437562-4301cf35b7e4?auto=format&fit=crop&w=1000&q=80"
               alt="Ketan Damle"
+              loading="lazy"
               className="h-full w-full object-cover"
             />
+            <div className="absolute right-3 bottom-3 rounded-full border border-white/30 bg-black/40 px-3 py-1.5 font-mono text-[11px] tracking-widest text-white uppercase backdrop-blur">
+              hi, ketan here
+            </div>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="flex flex-col gap-6">
-          <h2 className="text-3xl font-black tracking-tight text-foreground sm:text-4xl">
-            About me
-          </h2>
-          <p className="max-w-lg text-lg leading-relaxed text-muted-foreground">
-            I'm Ketan, a product designer who cares more about outcomes than pixels.
-            Over the past few years I've worked across fintech, healthcare, and SaaS —
-            leading research, shaping systems, and shipping features real people use
-            every day. I like ambiguous problems, tight feedback loops, and decisions
-            backed by evidence, not opinion. When I'm not designing, I'm probably
-            outdoors, chasing mountains or bad coffee.
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          className="md:col-span-7"
+        >
+          <p className="font-mono text-xs tracking-widest text-muted-foreground uppercase">
+            About
           </p>
+          <h2 className="mt-3 text-4xl leading-[1.05] font-semibold tracking-tight md:text-5xl">
+            I care more about the{' '}
+            <em className="font-serif font-normal italic text-accent">second</em>{' '}
+            release than the first.
+          </h2>
+          <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted-foreground">
+            <p>
+              I'm a product designer who's spent the last six years shipping — not
+              just pitching — software across fintech, wellness, and B2B SaaS. The
+              projects I'm proudest of aren't the flashiest; they're the ones
+              still running.
+            </p>
+            <p>
+              I run tight research loops, keep a healthy respect for systems, and
+              write copy that survives handoff. I also teach the next lot of
+              designers at MIT Institute of Design, because paying it forward
+              tends to keep you honest.
+            </p>
+          </div>
+
+          <dl className="mt-10 grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+            {facts.map(({ k, v }) => (
+              <div
+                key={k}
+                className="flex flex-col border-t border-border pt-3"
+              >
+                <dt className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
+                  {k}
+                </dt>
+                <dd className="mt-1 text-base text-foreground">{v}</dd>
+              </div>
+            ))}
+          </dl>
+
           <Link
             to="/about"
-            className="group inline-flex w-fit items-center gap-1.5 text-base font-medium text-foreground"
+            className="group mt-10 inline-flex items-center gap-2 text-base font-medium text-foreground"
           >
-            <span className="underline decoration-primary decoration-2 underline-offset-4">
-              Read the full story
+            <span className="underline decoration-accent decoration-2 underline-offset-4">
+              More about how I work
             </span>
-            <ArrowRight className="size-4 transition-transform duration-200 ease-out group-hover:translate-x-1" />
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
           </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   )
