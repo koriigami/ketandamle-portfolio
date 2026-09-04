@@ -1,10 +1,10 @@
-import Nav from '../components/Nav'
+import Header from '../components/Header'
 
 export default function About() {
   return (
     <div>
-      <Nav />
-      <div style={{ padding: '2rem', textAlign: 'center' }}>
+      <Header />
+      <div style={{ padding: '6rem 2rem 2rem', textAlign: 'center' }}>
         <h1>About</h1>
       </div>
     </div>
